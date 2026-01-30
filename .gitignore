@@ -1,0 +1,11 @@
+dist
+node_modules
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.eslintcache
+.DS_Store
