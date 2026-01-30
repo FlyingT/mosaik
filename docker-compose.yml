@@ -1,6 +1,5 @@
 services:
-  qr-generator:
-    build: .
+  mosaik-qr-generator:
     image: ghcr.io/flyingt/mosaik:latest
     ports:
       - "8080:80"

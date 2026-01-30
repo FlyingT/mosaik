@@ -3,11 +3,14 @@ import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
 import { Download, LayoutGrid, Type, Palette, Square } from 'lucide-react';
 
 function App() {
-    const [text, setText] = useState('https://github.com/FlyingT/belegt');
+    const [text, setText] = useState('');
     const [fgColor, setFgColor] = useState('#4f46e5');
     const [bgColor, setBgColor] = useState('#ffffff');
     const [hasBorder, setHasBorder] = useState(true);
     const [bottomText, setBottomText] = useState('');
+
+    const version = "v1.0.0";
+    const author = "TK";
 
     const qrRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +25,7 @@ function App() {
                 const svgUrl = URL.createObjectURL(svgBlob);
                 const downloadLink = document.createElement('a');
                 downloadLink.href = svgUrl;
-                downloadLink.download = 'qrcode.svg';
+                downloadLink.download = `qrcode_${Date.now()}.svg`;
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
@@ -60,7 +63,7 @@ function App() {
 
             const url = tempCanvas.toDataURL(`image/${format === 'jpg' ? 'jpeg' : 'png'}`);
             const link = document.createElement('a');
-            link.download = `qrcode.${format}`;
+            link.download = `qrcode_${Date.now()}.${format}`;
             link.href = url;
             link.click();
         }
@@ -73,8 +76,8 @@ function App() {
                     <LayoutGrid className="text-white w-6 h-6" />
                 </div>
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 leading-tight">Mosaik? <span className="text-gray-400 font-normal">Übersicht</span></h1>
-                    <p className="text-sm text-gray-500">QR-Code Generator im Mosaik-Stil</p>
+                    <h1 className="text-2xl font-bold text-gray-900 leading-tight">Mosaik!</h1>
+                    <p className="text-sm text-gray-500 font-medium">Einfacher, lokaler QR-Code Generator</p>
                 </div>
             </header>
 
@@ -94,7 +97,7 @@ function App() {
                                 className="input-field"
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
-                                placeholder="https://..."
+                                placeholder="Inhalt hier eingeben..."
                             />
                         </div>
 
@@ -149,8 +152,7 @@ function App() {
                                 checked={hasBorder}
                                 onChange={(e) => setHasBorder(e.target.checked)}
                             />
-                            <label htmlFor="border-toggle" className="text-sm font-medium text-gray-700 cursor-pointer flex items-center gap-2">
-                                <Square className="w-4 h-4" />
+                            <label htmlFor="border-toggle" className="text-sm font-medium text-gray-700 cursor-pointer">
                                 Rahmen hinzufügen
                             </label>
                         </div>
@@ -162,13 +164,13 @@ function App() {
                             Herunterladen
                         </h2>
                         <div className="grid grid-cols-1 gap-3">
-                            <button onClick={() => downloadQR('png')} className="btn-primary flex items-center justify-center gap-2">
+                            <button disabled={!text} onClick={() => downloadQR('png')} className="btn-primary flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" /> PNG laden
                             </button>
-                            <button onClick={() => downloadQR('jpg')} className="btn-primary bg-primary-light hover:bg-primary flex items-center justify-center gap-2">
+                            <button disabled={!text} onClick={() => downloadQR('jpg')} className="btn-primary bg-primary-light hover:bg-primary flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" /> JPG laden
                             </button>
-                            <button onClick={() => downloadQR('svg')} className="btn-primary bg-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2">
+                            <button disabled={!text} onClick={() => downloadQR('svg')} className="btn-primary bg-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" /> SVG laden
                             </button>
                         </div>
@@ -191,7 +193,7 @@ function App() {
                         >
                             <div className="hidden">
                                 <QRCodeCanvas
-                                    value={text}
+                                    value={text || ' '}
                                     size={256}
                                     fgColor={fgColor}
                                     bgColor={bgColor}
@@ -199,7 +201,7 @@ function App() {
                                 />
                             </div>
                             <QRCodeSVG
-                                value={text}
+                                value={text || ' '}
                                 size={256}
                                 fgColor={fgColor}
                                 bgColor={bgColor}
@@ -229,6 +231,17 @@ function App() {
                     </div>
                 </div>
             </main>
+
+            <footer className="max-w-5xl mx-auto w-full py-6 mt-auto flex justify-end">
+                <a
+                    href="CHANGELOG.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-gray-400 hover:text-primary transition-colors duration-200"
+                >
+                    {version} von {author}
+                </a>
+            </footer>
         </div>
     );
 }

@@ -13,15 +13,13 @@ Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://g
   - Textzeile unter dem QR-Code hinzufügbar.
 - **Export**: Download als PNG, JPG oder SVG.
 
-
 ## Nutzung mit Docker
 
 Erstelle eine `docker-compose.yml` mit folgendem Inhalt:
 
 ```yaml
 services:
-  qr-generator:
-    build: .
+  mosaik-qr-generator:
     image: ghcr.io/flyingt/mosaik:latest
     ports:
       - "8080:80"
@@ -35,5 +33,9 @@ docker compose up -d
 ```
 
 Der Generator ist dann unter `http://localhost:8080` erreichbar.
+
+## Changelog
+
+Details zu den einzelnen Versionen findest du in der [CHANGELOG.md](CHANGELOG.md).
 
 
