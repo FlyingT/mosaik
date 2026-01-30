@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
-import { Download, LayoutGrid, Type, Palette, Square } from 'lucide-react';
+import { Download, LayoutGrid, Type, Palette } from 'lucide-react';
 
 function App() {
     const [text, setText] = useState('');
@@ -9,7 +9,7 @@ function App() {
     const [hasBorder, setHasBorder] = useState(true);
     const [bottomText, setBottomText] = useState('');
 
-    const version = "v1.0.0";
+    const version = "v1.0.1";
     const author = "TK";
 
     const qrRef = useRef<HTMLDivElement>(null);

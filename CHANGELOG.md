@@ -4,6 +4,13 @@ Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokollier
 
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
+## [1.0.1] - 2026-01-30
+
+### Behoben
+- Unbenutztes Import-Statement in `App.tsx` entfernt (behebt Build-Fehler).
+- Casing-Warnungen im Dockerfile behoben.
+- Versionsnummer im UI auf v1.0.1 aktualisiert.
+
 ## [1.0.0] - 2026-01-30
 
 ### Hinzugefügt

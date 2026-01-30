@@ -9,9 +9,11 @@ Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://g
 - **Individueller Inhalt**: Erstellt QR-Codes aus URLs oder beliebigem Text.
 - **Design-Anpassung**:
   - Farben für QR-Code und Hintergrund frei wählbar.
-  - Optionaler Rahmen (Padding).
+  - Optionaler Rahmen (Padding) für besseres Scannen.
   - Textzeile unter dem QR-Code hinzufügbar.
-- **Export**: Download als PNG, JPG oder SVG.
+- **Vorschau**: Live-Vorschau der Änderungen im Browser.
+- **Export**: Hochauflösender Download als PNG, JPG oder SVG mit automatischer Dateibenennung.
+- **Lokal & Sicher**: Keine Datenübertragung an externe APIs; die Generierung erfolgt lokal im Browser.
 
 ## Nutzung mit Docker
 
