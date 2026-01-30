@@ -12,7 +12,7 @@ Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://g
   - Optionaler Rahmen (Padding).
   - Textzeile unter dem QR-Code hinzufügbar.
 - **Export**: Download als PNG, JPG oder SVG.
-- **Design**: Modernes UI mit Tailwind CSS, passend zum Mosaik/Belegt Ökosystem.
+
 
 ## Nutzung mit Docker
 
@@ -24,26 +24,4 @@ docker compose up -d
 
 Der Generator ist anschließend unter `http://localhost:8080` erreichbar.
 
-## Entwicklung
 
-Voraussetzung: [Node.js](https://nodejs.org/) (Version 20+)
-
-```bash
-# Abhängigkeiten installieren
-npm install
-
-# Entwicklungsserver starten
-npm run dev
-
-# Produktions-Build erstellen
-npm run build
-```
-
-## CI/CD
-
-Das Projekt enthält eine GitHub Action, die bei Pushes auf `main` oder `master` automatisch:
-1. Den Docker-Container baut.
-2. Das Image zu GitHub Container Registry (GHCR) pusht.
-
----
-Erstellt von [FlyingT](https://github.com/FlyingT)
