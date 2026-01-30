@@ -16,12 +16,24 @@ Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://g
 
 ## Nutzung mit Docker
 
-Am einfachsten lässt sich der Generator via Docker starten:
+Erstelle eine `docker-compose.yml` mit folgendem Inhalt:
+
+```yaml
+services:
+  qr-generator:
+    build: .
+    image: ghcr.io/flyingt/mosaik:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+```
+
+Starte den Generator anschließend mit:
 
 ```bash
 docker compose up -d
 ```
 
-Der Generator ist anschließend unter `http://localhost:8080` erreichbar.
+Der Generator ist dann unter `http://localhost:8080` erreichbar.
 
 
