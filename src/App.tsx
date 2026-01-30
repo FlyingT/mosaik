@@ -4,14 +4,14 @@ import { Download, Type, Palette } from 'lucide-react';
 
 function App() {
     const [text, setText] = useState('');
-    const [fgColor, setFgColor] = useState('#4f46e5');
+    const [fgColor, setFgColor] = useState('#000000');
     const [bgColor, setBgColor] = useState('#ffffff');
     const [hasBorder, setHasBorder] = useState(false);
     const [borderThickness, setBorderThickness] = useState(20);
-    const [borderColor, setBorderColor] = useState('#ffffff');
+    const [borderColor, setBorderColor] = useState('#000000');
     const [bottomText, setBottomText] = useState('');
 
-    const version = "v1.1.0";
+    const version = "v1.1.1";
     const author = "TK";
 
     const qrRef = useRef<HTMLDivElement>(null);
@@ -99,37 +99,37 @@ function App() {
 
             <main className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow">
                 {/* Controls */}
-                <div className="lg:col-span-1 space-y-6">
-                    <div className="card p-6 space-y-4">
+                <div className="lg:col-span-1 flex flex-col gap-6 h-full">
+                    <div className="card p-6 space-y-4 flex-grow">
                         <h2 className="text-lg font-semibold flex items-center gap-2">
                             <Type className="w-5 h-5 text-primary" />
                             Inhalt & Text
                         </h2>
 
                         <div>
-                            <label className="label">QR-Code Inhalt (URL/Text)</label>
+                            <label className="label">QR-Code Inhalt</label>
                             <input
                                 type="text"
                                 className="input-field"
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
-                                placeholder="Inhalt hier eingeben..."
+                                placeholder="Link oder Text"
                             />
                         </div>
 
                         <div>
-                            <label className="label">Text unter dem Code</label>
+                            <label className="label">Beschriftung</label>
                             <input
                                 type="text"
                                 className="input-field"
                                 value={bottomText}
                                 onChange={(e) => setBottomText(e.target.value)}
-                                placeholder="Optionaler Text"
+                                placeholder="Scan mich!, Hinweis, ..."
                             />
                         </div>
                     </div>
 
-                    <div className="card p-6 space-y-4">
+                    <div className="card p-6 space-y-4 flex-grow">
                         <h2 className="text-lg font-semibold flex items-center gap-2">
                             <Palette className="w-5 h-5 text-primary" />
                             Farben & Design
@@ -179,8 +179,8 @@ function App() {
                                     <label className="label">Rahmendicke ({borderThickness}px)</label>
                                     <input
                                         type="range"
-                                        min="10"
-                                        max="100"
+                                        min="1"
+                                        max="50"
                                         value={borderThickness}
                                         onChange={(e) => setBorderThickness(Number(e.target.value))}
                                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
@@ -201,8 +201,8 @@ function App() {
                 </div>
 
                 {/* Preview */}
-                <div className="lg:col-span-2">
-                    <div className="card p-8 flex flex-col items-center justify-between min-h-[500px] bg-white relative">
+                <div className="lg:col-span-2 flex flex-col">
+                    <div className="card p-8 flex flex-col items-center justify-between min-h-[500px] bg-white relative flex-grow">
                         <div className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-4">Vorschau</div>
 
                         <div className="flex-grow flex items-center justify-center w-full">
@@ -220,7 +220,7 @@ function App() {
                                     <div className="hidden">
                                         <QRCodeCanvas
                                             value={text || ' '}
-                                            size={256}
+                                            size={320}
                                             fgColor={fgColor}
                                             bgColor={bgColor}
                                             level="H"
@@ -228,7 +228,7 @@ function App() {
                                     </div>
                                     <QRCodeSVG
                                         value={text || ' '}
-                                        size={256}
+                                        size={320}
                                         fgColor={fgColor}
                                         bgColor={bgColor}
                                         level="H"
@@ -236,7 +236,7 @@ function App() {
                                 </div>
                                 {bottomText && (
                                     <div
-                                        className="mt-4 font-bold text-lg"
+                                        className="mt-6 font-bold text-xl"
                                         style={{ color: fgColor }}
                                     >
                                         {bottomText}
@@ -248,13 +248,13 @@ function App() {
                         <div className="mt-12 w-full border-t border-gray-100 pt-8">
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                                 <button disabled={!text} onClick={() => downloadQR('png')} className="btn-primary flex items-center justify-center gap-2 w-full md:w-auto">
-                                    <Download className="w-4 h-4" /> PNG laden
+                                    <Download className="w-4 h-4" /> PNG
                                 </button>
                                 <button disabled={!text} onClick={() => downloadQR('jpg')} className="btn-primary bg-primary-light hover:bg-primary flex items-center justify-center gap-2 w-full md:w-auto">
-                                    <Download className="w-4 h-4" /> JPG laden
+                                    <Download className="w-4 h-4" /> JPG
                                 </button>
                                 <button disabled={!text} onClick={() => downloadQR('svg')} className="btn-primary bg-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2 w-full md:w-auto">
-                                    <Download className="w-4 h-4" /> SVG laden
+                                    <Download className="w-4 h-4" /> SVG
                                 </button>
                             </div>
                         </div>

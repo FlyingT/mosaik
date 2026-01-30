@@ -2,6 +2,17 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.1.1] - 2026-01-30
+
+### Behoben
+- Standardfarbe für QR-Code und Rahmen auf Schwarz (#000000) gesetzt.
+- Layout-Alignment: Kontrollelemente auf der linken Seite enden nun bündig mit der Vorschau.
+- "VORSCHAU" zu "Vorschau" korrigiert.
+- QR-Code Größe in der Vorschau für bessere Raumnutzung erhöht.
+- Bereich für Rahmendicke auf 1px bis 50px angepasst.
+- Labels und Platzhaltertexte für QR-Inhalt und Beschriftung optimiert.
+- "laden" Text von den Download-Buttons entfernt.
+
 ## [1.1.0] - 2026-01-30
 
 ### Hinzugefügt
