@@ -1,6 +1,7 @@
 # Mosaik QR-Code Generator
 
-Ein einfacher, moderner QR-Code Generator, reduziert auf die wesentlichen Funktionen. Vibe-Coded mit Google Antigravity. Gedacht für die Bereitstellung im Intranet, nicht für das Internet.
+Ein einfacher, moderner QR-Code Generator, reduziert auf die wesentlichen Funktionen. Vibe-Coded mit Google Antigravity. 
+Gedacht für die Bereitstellung im Intranet, nicht für das Internet.
 
 ![](https://github.com/FlyingT/mosaik/blob/main/Screenshots/1-Dashboard.png)
 
