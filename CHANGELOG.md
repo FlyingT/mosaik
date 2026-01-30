@@ -2,14 +2,23 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
-Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
+## [1.1.0] - 2026-01-30
+
+### Hinzugefügt
+- Optionen für Rahmendicke und Rahmenfarbe hinzugefügt (wird eingeblendet, wenn Rahmen aktiviert ist).
+- Link zur Changelog-Datei im UI hinzugefügt.
+
+### Geändert
+- Header-Logo angepasst (ein Quadrat entfernt für QR-Optik).
+- Layout optimiert: Download-Buttons befinden sich nun direkt unter der Vorschau nebeneinander.
+- "QR-Code Informationen" Bereich entfernt.
+- Rahmen ist standardmäßig deaktiviert.
 
 ## [1.0.1] - 2026-01-30
 
 ### Behoben
 - Unbenutztes Import-Statement in `App.tsx` entfernt (behebt Build-Fehler).
 - Casing-Warnungen im Dockerfile behoben.
-- Versionsnummer im UI auf v1.0.1 aktualisiert.
 
 ## [1.0.0] - 2026-01-30
 

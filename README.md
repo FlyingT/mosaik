@@ -9,11 +9,11 @@ Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://g
 - **Individueller Inhalt**: Erstellt QR-Codes aus URLs oder beliebigem Text.
 - **Design-Anpassung**:
   - Farben für QR-Code und Hintergrund frei wählbar.
-  - Optionaler Rahmen (Padding) für besseres Scannen.
+  - Umfangreicher Rahmen (**Thickness** und **Farbe** wählbar, perfekt für Branding).
   - Textzeile unter dem QR-Code hinzufügbar.
-- **Vorschau**: Live-Vorschau der Änderungen im Browser.
+- **Vorschau**: Live-Vorschau der Änderungen im Browser in Echtzeit.
 - **Export**: Hochauflösender Download als PNG, JPG oder SVG mit automatischer Dateibenennung.
-- **Lokal & Sicher**: Keine Datenübertragung an externe APIs; die Generierung erfolgt lokal im Browser.
+- **Lokal & Sicher**: Die Generierung erfolgt vollständig im Browser, es werden keine Daten an externe Server gesendet.
 
 ## Nutzung mit Docker
 
@@ -22,6 +22,7 @@ Erstelle eine `docker-compose.yml` mit folgendem Inhalt:
 ```yaml
 services:
   mosaik-qr-generator:
+    container_name: mosaik-qr-generator
     image: ghcr.io/flyingt/mosaik:latest
     ports:
       - "8080:80"
@@ -33,11 +34,4 @@ Starte den Generator anschließend mit:
 ```bash
 docker compose up -d
 ```
-
-Der Generator ist dann unter `http://localhost:8080` erreichbar.
-
-## Changelog
-
-Details zu den einzelnen Versionen findest du in der [CHANGELOG.md](CHANGELOG.md).
-
 
