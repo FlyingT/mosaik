@@ -2,6 +2,16 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.2.0] - 2026-01-30
+
+### Hinzugefügt
+- Neue Funktion: Textfarbe für die Beschriftung nun frei wählbar.
+
+### Behoben
+- Export-Fix: Der Rahmen wird nun korrekt in heruntergeladenen Bildern (PNG/JPG) mit exportiert.
+- UI-Optimierung: Die Kontrollkarten sind nun kompakter gestaltet, um unnötigen Leerraum zu vermeiden.
+- Standardeinstellungen: Rahmendicke auf 10px und Rahmenfarbe auf Dunkelgrau (#374151) angepasst.
+
 ## [1.1.1] - 2026-01-30
 
 ### Behoben

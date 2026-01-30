@@ -1,16 +1,16 @@
 # Mosaik QR-Code Generator
 
-Ein einfacher, moderner QR-Code Generator, der optisch an das [belegt](https://github.com/FlyingT/belegt) Tool angepasst ist. Das Interface ist vollständig auf Deutsch.
+Ein einfacher, moderner QR-Code Generator, reduziert auf die wesentlichen Funktionen.
 
-![QR-Generator Vorschau](https://raw.githubusercontent.com/FlyingT/mosaik/main/preview.png)
+![]()
 
 ## Funktionen
 
 - **Individueller Inhalt**: Erstellt QR-Codes aus URLs oder beliebigem Text.
 - **Design-Anpassung**:
   - Farben für QR-Code und Hintergrund frei wählbar.
+  - **Beschriftung**: Text unter dem Code mit frei wählbarer Farbe.
   - Umfangreicher Rahmen (**Dicke** und **Farbe** wählbar, perfekt für Branding).
-  - Textzeile unter dem QR-Code hinzufügbar.
 - **Vorschau**: Live-Vorschau der Änderungen im Browser in Echtzeit.
 - **Export**: Hochauflösender Download als PNG, JPG oder SVG mit automatischer Dateibenennung.
 - **Lokal & Sicher**: Die Generierung erfolgt vollständig im Browser, es werden keine Daten an externe Server gesendet.

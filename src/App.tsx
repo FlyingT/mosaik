@@ -7,11 +7,12 @@ function App() {
     const [fgColor, setFgColor] = useState('#000000');
     const [bgColor, setBgColor] = useState('#ffffff');
     const [hasBorder, setHasBorder] = useState(false);
-    const [borderThickness, setBorderThickness] = useState(20);
-    const [borderColor, setBorderColor] = useState('#000000');
+    const [borderThickness, setBorderThickness] = useState(10);
+    const [borderColor, setBorderColor] = useState('#374151');
     const [bottomText, setBottomText] = useState('');
+    const [textColor, setTextColor] = useState('#000000');
 
-    const version = "v1.1.1";
+    const version = "v1.2.0";
     const author = "TK";
 
     const qrRef = useRef<HTMLDivElement>(null);
@@ -42,34 +43,38 @@ function App() {
             const ctx = tempCanvas.getContext('2d');
             if (!ctx) return;
 
-            const padding = hasBorder ? Number(borderThickness) : 20;
-            const textHeight = bottomText ? 40 : 0;
+            const borderPadding = hasBorder ? Number(borderThickness) : 0;
+            const innerPadding = 10; // Corresponds to the p-2 in preview
+            const totalPadding = borderPadding + innerPadding;
+            const textSpace = bottomText ? 60 : 0;
 
-            tempCanvas.width = canvas.width + padding * 2;
-            tempCanvas.height = canvas.height + padding * 2 + textHeight;
+            tempCanvas.width = canvas.width + totalPadding * 2;
+            tempCanvas.height = canvas.height + totalPadding * 2 + textSpace;
 
-            // Fill background with border color if border is on, otherwise background color
-            ctx.fillStyle = hasBorder ? borderColor : bgColor;
-            ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-
-            // If border is on, draw a background for the QR code itself using the bgColor
-            if (hasBorder) {
-                ctx.fillStyle = bgColor;
-                ctx.fillRect(padding - 10, padding - 10, canvas.width + 20, canvas.height + 20);
+            // 1. Background / Border color
+            ctx.fillStyle = hasBorder ? borderColor : (format === 'jpg' ? '#ffffff' : 'transparent');
+            if (format === 'png' && !hasBorder) {
+                ctx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            } else {
+                ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
             }
 
-            // Draw QR Code
-            ctx.drawImage(canvas, padding, padding);
+            // 2. QR Background Box
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(borderPadding, borderPadding, canvas.width + innerPadding * 2, canvas.height + innerPadding * 2 + textSpace);
 
-            // Draw optional text
+            // 3. Draw QR Code
+            ctx.drawImage(canvas, totalPadding, totalPadding);
+
+            // 4. Draw Label text
             if (bottomText) {
-                ctx.fillStyle = fgColor;
-                ctx.font = 'bold 16px Inter, sans-serif';
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 20px Inter, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(bottomText, tempCanvas.width / 2, canvas.height + padding + textHeight / 2 + 5);
+                ctx.fillText(bottomText, tempCanvas.width / 2, canvas.height + totalPadding + 40);
             }
 
-            const url = tempCanvas.toDataURL(`image/${format === 'jpg' ? 'jpeg' : 'png'}`);
+            const url = tempCanvas.toDataURL(`image/${format === 'jpg' ? 'jpeg' : 'png'}`, 1.0);
             const link = document.createElement('a');
             link.download = `qrcode_${Date.now()}.${format}`;
             link.href = url;
@@ -97,10 +102,10 @@ function App() {
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow">
+            <main className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 {/* Controls */}
-                <div className="lg:col-span-1 flex flex-col gap-6 h-full">
-                    <div className="card p-6 space-y-4 flex-grow">
+                <div className="lg:col-span-1 flex flex-col gap-6">
+                    <div className="card p-6 space-y-4">
                         <h2 className="text-lg font-semibold flex items-center gap-2">
                             <Type className="w-5 h-5 text-primary" />
                             Inhalt & Text
@@ -119,17 +124,30 @@ function App() {
 
                         <div>
                             <label className="label">Beschriftung</label>
-                            <input
-                                type="text"
-                                className="input-field"
-                                value={bottomText}
-                                onChange={(e) => setBottomText(e.target.value)}
-                                placeholder="Scan mich!, Hinweis, ..."
-                            />
+                            <div className="flex flex-col gap-3">
+                                <input
+                                    type="text"
+                                    className="input-field"
+                                    value={bottomText}
+                                    onChange={(e) => setBottomText(e.target.value)}
+                                    placeholder="Scan mich!, Hinweis, ..."
+                                />
+                                {bottomText && (
+                                    <div className="flex items-center gap-2 animate-in fade-in duration-200">
+                                        <label className="text-xs font-medium text-gray-500 whitespace-nowrap">Textfarbe:</label>
+                                        <input
+                                            type="color"
+                                            className="h-8 w-12 cursor-pointer rounded border border-gray-200"
+                                            value={textColor}
+                                            onChange={(e) => setTextColor(e.target.value)}
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
 
-                    <div className="card p-6 space-y-4 flex-grow">
+                    <div className="card p-6 space-y-4">
                         <h2 className="text-lg font-semibold flex items-center gap-2">
                             <Palette className="w-5 h-5 text-primary" />
                             Farben & Design
@@ -202,7 +220,7 @@ function App() {
 
                 {/* Preview */}
                 <div className="lg:col-span-2 flex flex-col">
-                    <div className="card p-8 flex flex-col items-center justify-between min-h-[500px] bg-white relative flex-grow">
+                    <div className="card p-8 flex flex-col items-center justify-between bg-white relative">
                         <div className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-4">Vorschau</div>
 
                         <div className="flex-grow flex items-center justify-center w-full">
@@ -211,12 +229,15 @@ function App() {
                                 className={`transition-all duration-300 flex flex-col items-center justify-center`}
                                 style={{
                                     backgroundColor: hasBorder ? borderColor : 'transparent',
-                                    padding: hasBorder ? `${borderThickness}px` : '1rem',
+                                    padding: hasBorder ? `${borderThickness}px` : '0',
                                     borderRadius: '0.75rem',
                                     boxShadow: hasBorder ? '0 10px 15px -3px rgb(0 0 0 / 0.1)' : 'none'
                                 }}
                             >
-                                <div className="bg-white p-2 rounded shadow-sm" style={{ backgroundColor: bgColor }}>
+                                <div
+                                    className="flex flex-col items-center p-2 rounded shadow-sm"
+                                    style={{ backgroundColor: bgColor }}
+                                >
                                     <div className="hidden">
                                         <QRCodeCanvas
                                             value={text || ' '}
@@ -233,15 +254,15 @@ function App() {
                                         bgColor={bgColor}
                                         level="H"
                                     />
+                                    {bottomText && (
+                                        <div
+                                            className="mt-6 font-bold text-xl"
+                                            style={{ color: textColor }}
+                                        >
+                                            {bottomText}
+                                        </div>
+                                    )}
                                 </div>
-                                {bottomText && (
-                                    <div
-                                        className="mt-6 font-bold text-xl"
-                                        style={{ color: fgColor }}
-                                    >
-                                        {bottomText}
-                                    </div>
-                                )}
                             </div>
                         </div>
 
