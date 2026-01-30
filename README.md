@@ -2,7 +2,7 @@
 
 Ein einfacher, moderner QR-Code Generator, reduziert auf die wesentlichen Funktionen.
 
-![]()
+![](https://github.com/FlyingT/mosaik/blob/main/Screenshots/1-Dashboard.png)
 
 ## Funktionen
 
