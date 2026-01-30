@@ -12,7 +12,7 @@ function App() {
     const [bottomText, setBottomText] = useState('');
     const [textColor, setTextColor] = useState('#000000');
 
-    const version = "v1.2.0";
+    const version = "v1.2.1";
     const author = "TK";
 
     const qrRef = useRef<HTMLDivElement>(null);
@@ -118,7 +118,7 @@ function App() {
                                 className="input-field"
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
-                                placeholder="Link oder Text"
+                                placeholder="Link, Text, ..."
                             />
                         </div>
 

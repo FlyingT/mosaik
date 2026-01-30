@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.2.1] - 2026-01-30
+
+### Behoben
+- Favicon hinzugefügt (Logo als Browser-Tab Icon).
+- Browser-Tab Titel auf "Mosaik! - QR-Code" geändert.
+- Platzhaltertext für QR-Inhalt auf "Link, Text, ..." aktualisiert.
+
 ## [1.2.0] - 2026-01-30
 
 ### Hinzugefügt
