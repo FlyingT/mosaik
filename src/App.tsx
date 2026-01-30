@@ -124,26 +124,13 @@ function App() {
 
                         <div>
                             <label className="label">Beschriftung</label>
-                            <div className="flex flex-col gap-3">
-                                <input
-                                    type="text"
-                                    className="input-field"
-                                    value={bottomText}
-                                    onChange={(e) => setBottomText(e.target.value)}
-                                    placeholder="Scan mich!, Hinweis, ..."
-                                />
-                                {bottomText && (
-                                    <div className="flex items-center gap-2 animate-in fade-in duration-200">
-                                        <label className="text-xs font-medium text-gray-500 whitespace-nowrap">Textfarbe:</label>
-                                        <input
-                                            type="color"
-                                            className="h-8 w-12 cursor-pointer rounded border border-gray-200"
-                                            value={textColor}
-                                            onChange={(e) => setTextColor(e.target.value)}
-                                        />
-                                    </div>
-                                )}
-                            </div>
+                            <input
+                                type="text"
+                                className="input-field"
+                                value={bottomText}
+                                onChange={(e) => setBottomText(e.target.value)}
+                                placeholder="Scan mich!, Hinweis, ..."
+                            />
                         </div>
                     </div>
 
@@ -176,6 +163,17 @@ function App() {
                                     />
                                 </div>
                             </div>
+                            {bottomText && (
+                                <div className="col-span-2 animate-in fade-in duration-300">
+                                    <label className="label">Text Farbe</label>
+                                    <input
+                                        type="color"
+                                        className="h-10 w-full cursor-pointer rounded border border-gray-200"
+                                        value={textColor}
+                                        onChange={(e) => setTextColor(e.target.value)}
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex items-center gap-3 pt-2">

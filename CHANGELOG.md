@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.2.2] - 2026-01-30
+
+### Behoben
+- UI-Refinement: Die Option "Text Farbe" wurde in den Bereich "Farben & Design" verschoben, um thematisch besser zu passen.
+- Label-Korrektur: "Textfarbe" in "Text Farbe" geändert.
+- Favicon-Update: Das Browser-Tab Icon entspricht nun exakt dem Logo in der Kopfzeile (indigo-blauer Hintergrund mit weißen Quadraten).
+
 ## [1.2.1] - 2026-01-30
 
 ### Behoben
