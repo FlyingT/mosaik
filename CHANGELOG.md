@@ -2,6 +2,15 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.4.0] - 2026-01-31
+
+### Hinzugefügt
+- **Design-Sync**: Benutzeroberfläche an das "belegt" Design-System angepasst.
+  - Sticky-Navbar mit Schatten implementiert.
+  - Hintergrundfarben und Abstände harmonisiert.
+  - Footer-Design vereinheitlicht (grauer Hintergrund, rechtsbündig).
+  - Border-Radius und Schatten an den Standard angepasst.
+
 ## [1.3.0] - 2026-01-31
 
 ### Hinzugefügt

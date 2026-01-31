@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#f8fafc] text-[#1e293b] antialiased transition-colors duration-300;
+    @apply bg-[#f3f4f6] text-[#1e293b] antialiased transition-colors duration-300;
   }
 
   .dark body {
@@ -13,7 +13,7 @@
 }
 
 .card {
-  @apply bg-white rounded-card shadow-card border border-gray-100 overflow-hidden transition-all duration-300;
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300;
 }
 
 .dark .card {
