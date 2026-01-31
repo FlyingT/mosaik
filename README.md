@@ -13,6 +13,7 @@ Gedacht für die Bereitstellung im Intranet, nicht für das Internet.
   - **Beschriftung**: Text unter dem Code mit frei wählbarer **Text Farbe**.
   - Umfangreicher Rahmen (**Dicke** und **Farbe** wählbar, perfekt für Branding).
 - **Vorschau**: Live-Vorschau der Änderungen im Browser in Echtzeit.
+- **Metadaten**: Automatischer **Dark Mode** (System-Präferenz) und manueller Toggle mit Speicherung.
 - **Export**: Hochauflösender Download als PNG, JPG oder SVG mit automatischer Dateibenennung.
 - **Lokal & Sicher**: Die Generierung erfolgt vollständig im Browser, es werden keine Daten an externe Server gesendet.
 

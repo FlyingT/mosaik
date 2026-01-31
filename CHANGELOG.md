@@ -2,6 +2,15 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.3.0] - 2026-01-31
+
+### Hinzugefügt
+- **Dark Mode**: Unterstützung für dunkles Design hinzugefügt.
+  - Automatisches Umschalten basierend auf OS-Einstellungen.
+  - Manueller Toggle im Header zum Wechseln zwischen Light- und Dark-Mode.
+  - Speicherung der Präferenz im Browser (LocalStorage).
+- UI-Anpassungen für alle Komponenten zur Unterstützung des Dark Modes.
+
 ## [1.2.2] - 2026-01-30
 
 ### Behoben

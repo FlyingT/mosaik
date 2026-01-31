@@ -4,12 +4,20 @@
 
 @layer base {
   body {
-    @apply bg-[#f8fafc] text-[#1e293b] antialiased;
+    @apply bg-[#f8fafc] text-[#1e293b] antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-[#0f172a] text-[#f1f5f9];
   }
 }
 
 .card {
-  @apply bg-white rounded-card shadow-card border border-gray-100 overflow-hidden;
+  @apply bg-white rounded-card shadow-card border border-gray-100 overflow-hidden transition-all duration-300;
+}
+
+.dark .card {
+  @apply bg-[#1e293b] border-gray-800 shadow-none;
 }
 
 .btn-primary {
@@ -20,6 +28,14 @@
   @apply w-full px-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200;
 }
 
+.dark .input-field {
+  @apply bg-[#0f172a] border-gray-700 text-[#f1f5f9] focus:ring-primary/40;
+}
+
 .label {
   @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.dark .label {
+  @apply text-gray-300;
 }

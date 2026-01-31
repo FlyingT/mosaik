@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
-import { Download, Type, Palette } from 'lucide-react';
+import { Download, Type, Palette, Sun, Moon } from 'lucide-react';
 
 function App() {
     const [text, setText] = useState('');
@@ -11,9 +11,27 @@ function App() {
     const [borderColor, setBorderColor] = useState('#374151');
     const [bottomText, setBottomText] = useState('');
     const [textColor, setTextColor] = useState('#000000');
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved === 'dark';
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        return false;
+    });
 
-    const version = "v1.2.2";
+    const version = "v1.3.0";
     const author = "TK";
+
+    useEffect(() => {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    }, [isDark]);
 
     const qrRef = useRef<HTMLDivElement>(null);
 
@@ -91,22 +109,31 @@ function App() {
     );
 
     return (
-        <div className="min-h-screen p-4 md:p-8 flex flex-col">
-            <header className="max-w-5xl mx-auto mb-8 w-full flex items-center gap-3 text-primary">
-                <div className="bg-primary p-2 rounded-lg text-white">
-                    <Logo />
+        <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] p-4 md:p-8 flex flex-col transition-colors duration-300">
+            <header className="max-w-5xl mx-auto mb-8 w-full flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <div className="bg-primary p-2 rounded-lg text-white">
+                        <Logo />
+                    </div>
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight">Mosaik!</h1>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Einfacher, lokaler QR-Code Generator</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900 leading-tight">Mosaik!</h1>
-                    <p className="text-sm text-gray-500 font-medium">Einfacher, lokaler QR-Code Generator</p>
-                </div>
+                <button
+                    onClick={() => setIsDark(!isDark)}
+                    className="p-2.5 rounded-xl bg-white dark:bg-[#1e293b] border border-gray-100 dark:border-gray-800 shadow-sm text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-all duration-200"
+                    title={isDark ? "Hellmodus einschalten" : "Dunkelmodus einschalten"}
+                >
+                    {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
             </header>
 
             <main className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 {/* Controls */}
                 <div className="lg:col-span-1 flex flex-col gap-6">
                     <div className="card p-6 space-y-4">
-                        <h2 className="text-lg font-semibold flex items-center gap-2">
+                        <h2 className="text-lg font-semibold flex items-center gap-2 dark:text-white">
                             <Type className="w-5 h-5 text-primary" />
                             Inhalt & Text
                         </h2>
@@ -135,7 +162,7 @@ function App() {
                     </div>
 
                     <div className="card p-6 space-y-4">
-                        <h2 className="text-lg font-semibold flex items-center gap-2">
+                        <h2 className="text-lg font-semibold flex items-center gap-2 dark:text-white">
                             <Palette className="w-5 h-5 text-primary" />
                             Farben & Design
                         </h2>
@@ -184,13 +211,13 @@ function App() {
                                 checked={hasBorder}
                                 onChange={(e) => setHasBorder(e.target.checked)}
                             />
-                            <label htmlFor="border-toggle" className="text-sm font-medium text-gray-700 cursor-pointer">
+                            <label htmlFor="border-toggle" className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer">
                                 Rahmen hinzufügen
                             </label>
                         </div>
 
                         {hasBorder && (
-                            <div className="space-y-4 pt-2 border-t border-gray-100 mt-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="space-y-4 pt-2 border-t border-gray-100 dark:border-gray-800 mt-2 animate-in fade-in slide-in-from-top-2 duration-200">
                                 <div>
                                     <label className="label">Rahmendicke ({borderThickness}px)</label>
                                     <input
@@ -199,7 +226,7 @@ function App() {
                                         max="50"
                                         value={borderThickness}
                                         onChange={(e) => setBorderThickness(Number(e.target.value))}
-                                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                                        className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
                                     />
                                 </div>
                                 <div>
@@ -218,8 +245,8 @@ function App() {
 
                 {/* Preview */}
                 <div className="lg:col-span-2 flex flex-col">
-                    <div className="card p-8 flex flex-col items-center justify-between bg-white relative">
-                        <div className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-4">Vorschau</div>
+                    <div className="card p-8 flex flex-col items-center justify-between bg-white dark:bg-[#1e293b] relative">
+                        <div className="text-sm font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Vorschau</div>
 
                         <div className="flex-grow flex items-center justify-center w-full">
                             <div
@@ -251,6 +278,7 @@ function App() {
                                         fgColor={fgColor}
                                         bgColor={bgColor}
                                         level="H"
+                                        className="max-w-full h-auto"
                                     />
                                     {bottomText && (
                                         <div
@@ -264,7 +292,7 @@ function App() {
                             </div>
                         </div>
 
-                        <div className="mt-12 w-full border-t border-gray-100 pt-8">
+                        <div className="mt-12 w-full border-t border-gray-100 dark:border-gray-800 pt-8">
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                                 <button disabled={!text} onClick={() => downloadQR('png')} className="btn-primary flex items-center justify-center gap-2 w-full md:w-auto">
                                     <Download className="w-4 h-4" /> PNG
@@ -286,7 +314,7 @@ function App() {
                     href="https://github.com/FlyingT/mosaik/blob/main/CHANGELOG.md"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-gray-400 hover:text-primary transition-colors duration-200"
+                    className="text-xs text-gray-400 dark:text-gray-500 hover:text-primary transition-colors duration-200"
                 >
                     {version} von {author}
                 </a>
