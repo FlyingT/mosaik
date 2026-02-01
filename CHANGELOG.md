@@ -2,6 +2,11 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.4.1] - 2026-02-01
+
+### Geändert
+- **Logo & Favicon**: Icon verfeinert, um stärker an einen QR-Code zu erinnern (Rahmen hinzugefügt).
+
 ## [1.4.0] - 2026-01-31
 
 ### Hinzugefügt
