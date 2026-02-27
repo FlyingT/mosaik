@@ -2,6 +2,22 @@
 
 Alle wichtigen Änderungen an diesem Projekt werden in dieser Datei protokolliert.
 
+## [1.5.0] - 2026-02-27
+
+### Hinzugefügt
+- **Komponentenstruktur**: `App.tsx` in wiederverwendbare Komponenten aufgeteilt (`Navbar`, `ControlPanel`, `QRPreview`, `Toast`, `Logo`) und `useTheme`-Hook extrahiert.
+- **Reset-Button**: Neuer „Zurücksetzen"-Button, der erscheint sobald Einstellungen verändert wurden.
+- **Download-Feedback**: Toast-Benachrichtigung nach erfolgreichem QR-Code Download.
+- **SEO & Open Graph**: Meta-Description, Theme-Color und OG-Tags in `index.html` ergänzt.
+
+### Behoben
+- **SVG-Export**: SVG-Download enthält nun Rahmen, Hintergrund und Beschriftung (zuvor nur der nackte QR-Code).
+
+### Geändert
+- **package.json**: Name auf `mosaik` und Version auf `1.5.0` korrigiert.
+- **Dockerfile**: `npm ci` statt `npm install` für reproduzierbare Builds, Nginx läuft als non-root User.
+- **Security-Header**: Eigene `nginx.conf` mit `X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Referrer-Policy` und `Permissions-Policy`.
+
 ## [1.4.1] - 2026-02-01
 
 ### Geändert
